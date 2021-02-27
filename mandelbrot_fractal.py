@@ -36,4 +36,5 @@ if __name__ == "__main__":
             color = 255 - int(iters*255/max_iter)
             draw.point([x,y], (color, color, color))
     
-    # Save to image
+    # Save the generated image.
+    img.save("mandelbrot_fractal.png", "PNG")
