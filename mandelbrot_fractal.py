@@ -35,7 +35,7 @@ if __name__ == "__main__":
     
     # plotting window
     x_leftmost, x_rightmost = -2, 2
-    y_top, y_bottom         = -1, 1
+    y_bottom, y_top         = -1, 1
     
     # Create image.
     img  = Image.new("RGB", (img_width, img_height), (0, 0, 0))
@@ -48,8 +48,8 @@ if __name__ == "__main__":
     #    - draw color to map
     for x in range(img_width):
         for y in range(img_height):
-            c = complex(re_start + (x/img_width)*(re_end - re_start),
-                        img_start + (y/img_height)*(img_end - img_start))
+            c = complex(x_leftmost + (x/img_width)*(x_rightmost - x_leftmost),
+                        y_bottom + (y/img_height)*(y_top - y_bottom))
             iters = mandelbrot_fractal(c)
             color = 255 - int(iters*255/max_iter)
             draw.point([x,y], (color, color, color))
