@@ -23,22 +23,17 @@ if __name__ == "__main__":
     img  = Image.new("RGB", (img_width, img_height), (0, 0, 0))
     draw = ImageDraw.Draw(img)
     
-    # For every pixel, assign a color w.r.t. the number of iterations
-    # returned by the 'mandelbrot_fractal' function.
+    # For every pixel:
+    #    - convert coordinates to complex number
+    #    - assign a color w.r.t. the number of iterations
+    #      returned by the 'mandelbrot_fractal' function.
+    #    - draw color to map
     for x in range(img_width):
         for y in range(img_height):
-            # Convert pixel coordinates to complex number.
             c = complex(re_start + (x/img_width)*(re_end - re_start),
                         img_start + (y/img_height)*(img_end - img_start))
             iters = mandelbrot_fractal(c)
             color = 255 - int(iters*255/max_iter)
             draw.point([x,y], (color, color, color))
-    
-    # cast pixel values to complex number
-    # TODO
-    
-    # Assign a color with respect to the number 
-    # of iterations that 'mandelbrot_fractal' returns.
-    # TODO
     
     # Save to image
