@@ -27,6 +27,12 @@ if __name__ == "__main__":
     # returned by the 'mandelbrot_fractal' function.
     for x in range(img_width):
         for y in range(img_height):
+            # Convert pixel coordinates to complex number.
+            c = complex(re_start + (x/img_width)*(re_end - re_start),
+                        img_start + (y/img_height)*(img_end - img_start))
+            iters = mandelbrot_fractal(c)
+            color = 255 - int(iters*255/max_iter)
+            draw.point([x,y], (color, color, color))
     
     # cast pixel values to complex number
     # TODO
