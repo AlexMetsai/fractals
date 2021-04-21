@@ -1,4 +1,4 @@
-# Plotting fractals
+# Visualizing fractals
 
 Below you can see a mandlbrot fractal generated through python code, using the PIL module.
 
