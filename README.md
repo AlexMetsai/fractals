@@ -1,6 +1,6 @@
 # Visualizing fractals
 
-Below you can see a mandlbrot fractal generated through python code, using the PIL module for visualization.
+Below you can see a mandelbrot fractal generated through python code, using the PIL module for visualization.
 
 ![mandelbrot](https://github.com/AlexMetsai/fractals/blob/main/output/mandelbrot_fractal_960_540.png?raw=true)
 
