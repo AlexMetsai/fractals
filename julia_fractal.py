@@ -68,5 +68,5 @@ if __name__ == "__main__":
     plain = np.rot90(plain)
     plt.imshow(plain, cmap='plasma', interpolation='nearest')
     plt.axis('off')
-    plt.savefig("output/julia_c_=_-0.7269_i0.1889.png", bbox_inches='tight', pad_inches=0)
+    plt.savefig("output/julia_c_=_-0.7269_i0.1889.png", bbox_inches='tight', pad_inches=0, dpi=300)
     plt.show()
