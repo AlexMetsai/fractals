@@ -1,4 +1,4 @@
-"""'
+"""
 Copyright (C) 2021 Alexandros I. Metsai
 alexmetsai@gmail.com
 
@@ -15,3 +15,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
+max_iter = 100
+
+
+def julia_fractal(z, c):
+    """
+    Fractals arising from julia sets can be obtained in a similar manner to mandelbrot fractals,
+    by keeping 'c' constant and letting 'z' be a value of the complex plain.
+
+    :param z:
+    :param c:
+    :return n: number of iterations
+    """
+    n = 0
+    while abs(z) <=2 and n < max_iter:
+        z = z*z + c
+        n += 1
+    return n
