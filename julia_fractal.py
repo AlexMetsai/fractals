@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
 
 def julia_set(z, c, max_iter):
@@ -37,36 +38,63 @@ def julia_set(z, c, max_iter):
     return n
 
 
-if __name__ == "__main__":
+def draw_julia_set(img_width, img_height, formula, c, loopy_way=True):
+    """
+    For every pixel:
+       - convert coordinates to complex number
+       - assign a color w.r.t. the number of iterations
+         returned by the 'julia_set' function.
+       - draw color to map
 
-    max_iter_ = 300
-    c_ = complex(-0.7269, 0.1889)
+    :param img_width:
+    :param img_height:
+    :param formula: The formula determining if a point belong to a julia set.
+    :param c:
+    :param loopy_way: Use a plain double loop or a list comprehension for the second dimension. The second way is more
+                  efficient for large resolutions but less readable.
+    :return n: number of iterations
+    """
 
-    # Set output image resolution.
-    img_width = 1920
-    img_height = 1080
-
-    # plotting window
+    # Plotting window
     x_leftmost, x_rightmost = -2, 2
     y_bottom, y_top = -1, 1
     plain = np.zeros((img_width, img_height))
 
-    # For every pixel:
-    #    - convert coordinates to complex number
-    #    - assign a color w.r.t. the number of iterations
-    #      returned by the 'mandelbrot_fractal' function.
-    #    - draw color to map
-    for x in range(img_width):
-        for y in range(img_height):
-            z_ = complex(x_leftmost + (x / img_width) * (x_rightmost - x_leftmost),
-                         y_bottom + (y / img_height) * (y_top - y_bottom))
-            iters = julia_set(z_, c_, max_iter_)
-            color = iters / max_iter_
-            plain[x, y] = color
+    start = time.time()
+
+    # Draw
+    if loopy_way:
+        for x in range(img_width):
+            for y in range(img_height):
+                z_ = complex(x_leftmost + (x / img_width) * (x_rightmost - x_leftmost),
+                             y_bottom + (y / img_height) * (y_top - y_bottom))
+                iters = formula(z_, c, max_iter_)
+                color = iters / max_iter_
+                plain[x, y] = color
+    else:
+        raise NotImplementedError
+
+    print(f"Time taken to calculate the fractal{time.time() - start}")
+
+    return plain
+
+
+if __name__ == "__main__":
+
+    # Set maximum number of iterations and the parameter 'c'.
+    max_iter_ = 300
+    c_ = complex(-0.7269, 0.1889)
+
+    # Set image resolution.
+    img_width_ = 1920*2
+    img_height_ = 1080*2
+
+    # Draw the set
+    plain_ = draw_julia_set(img_width_, img_height_, formula=julia_set, c=c_)
 
     # Save the generated image.
-    plain = np.rot90(plain)
-    plt.imshow(plain, cmap='plasma', interpolation='nearest')
+    plain_ = np.rot90(plain_)
+    plt.imshow(plain_, cmap='plasma', interpolation='nearest')
     plt.axis('off')
-    plt.savefig("output/julia_c_=_-0.7269_i0.1889.png", bbox_inches='tight', pad_inches=0, dpi=300)
+    plt.savefig(f"output/julia_c_=_{c_.real}_i{c_.imag}.png", bbox_inches='tight', pad_inches=0, dpi=500)
     plt.show()
