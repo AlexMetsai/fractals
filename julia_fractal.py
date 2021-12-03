@@ -51,7 +51,7 @@ def draw_julia_set(img_width, img_height, formula, c, loopy_way=True):
     :param formula: The formula determining if a point belong to a julia set.
     :param c:
     :param loopy_way: Use a plain double loop or a list comprehension for the second dimension. The second way is more
-                  efficient for large resolutions but less readable.
+                      efficient for large resolutions but also less readable.
     :return n: number of iterations
     """
 
@@ -72,7 +72,10 @@ def draw_julia_set(img_width, img_height, formula, c, loopy_way=True):
                 color = iters / max_iter_
                 plain[x, y] = color
     else:
-        raise NotImplementedError
+        for x in range(img_width):
+            zeds = [complex(x_leftmost + (x / img_width) * (x_rightmost - x_leftmost),
+                            y_bottom + (y / img_height) * (y_top - y_bottom)) for y in range(img_height)]
+            plain[x] = [julia_set(z_, c_, max_iter_) / max_iter_ for z_ in zeds]
 
     print(f"Time taken to calculate the fractal{time.time() - start}")
 
@@ -86,8 +89,8 @@ if __name__ == "__main__":
     c_ = complex(-0.7269, 0.1889)
 
     # Set image resolution.
-    img_width_ = 1920*2
-    img_height_ = 1080*2
+    img_width_ = 1920
+    img_height_ = 1080
 
     # Draw the set
     plain_ = draw_julia_set(img_width_, img_height_, formula=julia_set, c=c_)
