@@ -13,13 +13,19 @@ utilizing matplotlib. Of course, there's always room for improvement.
 
 ![mandelbrot](https://github.com/AlexMetsai/fractals/blob/main/output/julia_c_=_-0.7269_i0.1889_small.png?raw=true)
 
+Another fractal from the julia sets is shown below, for *c = -0.4 + j 0.6*.
+![mandelbrot](https://github.com/AlexMetsai/fractals/blob/main/output/julia_c_=_-0.4_i0.6.png?raw=true)
+
 Below you can see a mandelbrot fractal generated through python code, using the PIL module for visualization.
 
 ![mandelbrot](https://github.com/AlexMetsai/fractals/blob/main/output/mandelbrot_fractal_960_540.png?raw=true)
 
-~~Planning to add more aside from the mandelbrot one. PM me if I'm lazy.~~  &#9745;
 
-Planning to experiment with even better visualization and add a few more sets. PM me if I'm lazy.
+Planning to 
+- [X] Planning to add more fractals aside from the mandelbrot one. PM me if I'm lazy.
+- [ ] Experiment with even better visualization and add a few more sets. PM me if I'm lazy.
+- [X] Improve performance with list comprehension (improvement is marginal, need to try something else).
+- [ ] Improve performance with Cython. I'm not gonna promise anything about this. :-)
 
 ## Main dependencies:
 
