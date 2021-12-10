@@ -1,9 +1,11 @@
 # Visualizing fractals
 
+A repository for visualizing fractals with python and various plotting libraries and methods. Under development.
+
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 
-Implemented the visualization of a julia set, aside from the mandelbrot set. 
+Implemented the visualization of a julia set, aside from the mandelbrot fractal. 
 Below you can see one for *c = -0.7269 + j 0.1889*. 
 It is encouraged to experiment with different parameters of *c* to witness on first hand the 
 chaotic nature of these sets.
@@ -16,7 +18,8 @@ utilizing matplotlib. Of course, there's always room for improvement.
 Another fractal from the julia sets is shown below, for *c = -0.4 + j 0.6*.
 ![mandelbrot](https://github.com/AlexMetsai/fractals/blob/main/output/julia_c_=_-0.4_i0.6.png?raw=true)
 
-Below you can see a mandelbrot fractal generated through python code, using the PIL module for visualization.
+Below you can see a mandelbrot fractal, that was generated using the PIL module for visualization; this is the first 
+visualization method implemented in this repo.
 
 ![mandelbrot](https://github.com/AlexMetsai/fractals/blob/main/output/mandelbrot_fractal_960_540.png?raw=true)
 
